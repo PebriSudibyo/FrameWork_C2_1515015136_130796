@@ -24,7 +24,7 @@ class penggunaController extends Controller
     	$pengguna->username = 'jon_doe';
     	$pengguna->password = 'doe_jon';
     	$pengguna->save();
-    	return "data dengan username {$pengguna->username} telah disimpan";
+    	return "data table pengguna {$pengguna->username} telah disimpan";
     }
 }
  

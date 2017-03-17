@@ -12,6 +12,12 @@
 */
 Route::get('pengguna','penggunaController@awal');
 Route::get('pengguna/tambah','penggunaController@tambah');
+Route::get('dosen/tambah','dosenController@tambah');
+Route::get('mahasiswa/tambah','mahasiswaController@tambah');
+Route::get('ruangan/tambah','ruanganController@tambah');
+Route::get('matakuliah/tambah','matakuliahController@tambah');
+Route::get('dosen_matakuliah/tambah','dosen_matakuliahController@tambah');
+Route::get('jadwal_matakuliah/tambah','jadwal_matakuliahController@tambah');
 
 Route::get('/', function () {
     return view('welcome');
