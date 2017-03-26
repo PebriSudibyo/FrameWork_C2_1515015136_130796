@@ -18,7 +18,7 @@ class BuatTableDosen extends Migration
             $table->string('nip',18);
             $table->text('alamat');
             $table->integer('pengguna_id')->unsigned();
-            $table->foreign('pengguna_id')->references('id')->on('pengguna');
+            $table->foreign('pengguna_id')->references('id')->on('pengguna')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

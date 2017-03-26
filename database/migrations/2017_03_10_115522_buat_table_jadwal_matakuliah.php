@@ -17,9 +17,9 @@ class BuatTableJadwalMatakuliah extends Migration
             $table->integer('mahasiswa_id')->unsigned();
             $table->integer('ruangan_id')->unsigned();
             $table->integer('dosen_matakuliah_id')->unsigned();
-            $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa');
-            $table->foreign('ruangan_id')->references('id')->on('ruangan');
-            $table->foreign('dosen_matakuliah_id')->references('id')->on('dosen_matakuliah');
+            $table->foreign('mahasiswa_id')->references('id')->on('mahasiswa')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('ruangan_id')->references('id')->on('ruangan')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('dosen_matakuliah_id')->references('id')->on('dosen_matakuliah')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }
