@@ -8,6 +8,8 @@ class mahasiswa extends Model
 {
     protected $table = 'mahasiswa';
 
+    protected $fillable = ['nama', 'nim', 'alamat'];
+
     public function pengguna()
     {
     	return $this->belongsto(pengguna::class);
@@ -31,6 +33,8 @@ class mahasiswa extends Model
     {
     	return $this->hasMany(jadwal_matakuliah::class);
     }
+
+    
 }
 
  

@@ -8,6 +8,8 @@ class jadwal_matakuliah extends Model
 {
     protected $table = 'jadwal_matakuliah';
 
+    protected $guarded =['id'];
+
     public function mahasiswa()
     {
     	return $this->belongsto(mahasiswa::class);

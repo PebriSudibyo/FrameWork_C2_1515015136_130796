@@ -12,22 +12,18 @@
 		<head>
 			<tr>
 				<th>No.</th>
-				<th>nama</th>
-				<th>nim</th>
-				<th>alamat</th>
-				<th>ID Pengguna</th>
+				<th>Nama</th>
+				<th>NIM</th>
 				<th>Aksi</th>
 			</tr>
 		</head>
-		<tbody>
+		<body>
 			<?php $x=1; ?>
-			@foreach($data as $mahasiswa)
+			@foreach($semuaMahasiswa as $mahasiswa)
 			<tr>
 				<td>{{$x++}}</td>
 				<td>{{$mahasiswa->nama or 'nama kosong'}}</td>
 				<td>{{$mahasiswa->nim or 'nim kosong'}}</td>
-				<td>{{$mahasiswa->alamat or 'alamat kosong'}}</td>
-				<td>{{$mahasiswa->pengguna_id or 'pengguna_id kosong'}}</td>
 				<td>
 					<div class="btn-group" role="group">
 						<a href="{{url('mahasiswa/edit/'.$mahasiswa->id)}}" class="btn btn-warning btn-xs" data-toggle="tooltip" data-placement="top" title="Ubah"><i class="fa fa-pencil"></i></a>

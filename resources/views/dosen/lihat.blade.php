@@ -21,10 +21,16 @@
 				<td>{{$dosen->alamat}}</td>
 			</tr>
 			<tr>
-				<td>ID Pengguna</td>
+				<td>Username</td>
 				<td>:</td>
-				<td>{{$dosen->pengguna_id}}</td>
+				<td>{{$dosen->pengguna->username}}</td>
 			</tr>
+			<tr>
+				<td>password</td>
+				<td>:</td>
+				<td>{{$dosen->pengguna->password}}</td>
+			</tr>
+
 			<tr>
 				<td class="col-xs-4">Dibuat Tanggal</td>
 				<td class="col-xs-1">:</td>

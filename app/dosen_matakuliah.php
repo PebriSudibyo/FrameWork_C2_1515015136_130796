@@ -8,6 +8,8 @@ class dosen_matakuliah extends Model
 {
     protected $table = 'dosen_matakuliah';
 
+    protected $guarded =['id'];
+
     public function dosen()
     {
     	return $this->belongsto(dosen::class);
@@ -21,5 +23,14 @@ class dosen_matakuliah extends Model
     public function jadwal_matakuliah()
     {
     	return $this->hasMany(jadwal_matakuliah::class);
+    }
+
+    public function listDosenDanMatakuliah()
+    {
+        $out = [];
+        foreach($this->all() as $dsnMtk) {
+            $out[$dsnMtk->id] = "{$dsnMtk->dosen->nama} (matakuliah {$dsnMtk->matakuliah->title})";
+        }
+        return $out;
     }
 }

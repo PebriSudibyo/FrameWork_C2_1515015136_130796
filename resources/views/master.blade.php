@@ -36,7 +36,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a href="{{url('/')}}" class="navbar-brand">Laravel-Pebri</a>
+				<a href="{{url('/')}}" class="navbar-brand">Laravel-Pebri(136)</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
