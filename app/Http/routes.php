@@ -16,6 +16,18 @@ Route::get('/', function () {
     return view('master');
 });
 
+Route::get('/doslike',function(){
+	return \App\dosen_matakuliah::whereHas('dosen',function($query){
+		$query->where('nama','like','%s%');
+	})
+	->orwhereHas('matakuliah',function($kueri){
+		$kueri->where('title','like','%a%');
+	})
+	->with('dosen')
+	->groupBy('dosen_id')
+	->get();
+});
+
 
 Route::get('pengguna','penggunaController@awal');
 Route::get('pengguna/tambah','penggunaController@tambah');
@@ -91,3 +103,7 @@ Route::post('dosen_matakuliah/simpan','dosen_matakuliahController@simpan');
 Route::get('dosen_matakuliah/edit/{dosen_matakuliah}','dosen_matakuliahController@edit');
 Route::post('dosen_matakuliah/edit/{dosen_matakuliah}','dosen_matakuliahController@update');
 Route::get('dosen_matakuliah/hapus/{dosen_matakuliah}','dosen_matakuliahController@hapus');
+
+
+Route::get('ujiHas','RelationshipRebornController@ujiHas');
+Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
