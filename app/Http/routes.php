@@ -1,5 +1,20 @@
 <?php
+Route::get('/login','SesiController@form');
+Route::post('/login','SesiController@validasi');
+Route::get('/logout','SesiController@logout');
+Route::get('/','SesiController@index');
+Route::group(['middleware'=>'AutentifikasiUser'], function()
+{
+Route::get('pengguna','penggunaController@awal');
+Route::get('pengguna/tambah','penggunaController@tambah');
+Route::get('pengguna/lihat/{pengguna}','penggunaController@lihat');
+Route::post('pengguna/simpan','penggunaController@simpan');
+Route::get('pengguna/edit/{pengguna}','penggunaController@edit');
+Route::post('pengguna/edit/{pengguna}','penggunaController@update');
+Route::get('pengguna/hapus/{pengguna}','penggunaController@hapus');
 
+
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -16,21 +31,6 @@ Route::get('/', function () {
     return view('master');
 });
 
-Route::get('/doslike',function(){
-	return \App\dosen_matakuliah::whereHas('dosen',function($query){
-		$query->where('nama','like','%s%');
-	})
-	->orwhereHas('matakuliah',function($kueri){
-		$kueri->where('title','like','%a%');
-	})
-	->with('dosen')
-	->groupBy('dosen_id')
-	->get();
-});
-
-
-Route::get('pengguna','penggunaController@awal');
-Route::get('pengguna/tambah','penggunaController@tambah');
 
 Route::get('ruangan','ruanganController@awal');
 Route::get('ruangan/tambah','ruanganController@tambah');
@@ -49,15 +49,6 @@ Route::get('jadwal_matakuliah/tambah','jadwal_matakuliahController@tambah');
 
 Route::get('matakuliah','matakuliahController@awal');
 Route::get('matakuliah/tambah','matakuliahController@tambah');
-
-
-Route::get('pengguna/lihat/{pengguna}','penggunaController@lihat');
-Route::post('pengguna/simpan','penggunaController@simpan');
-Route::get('pengguna/edit/{pengguna}','penggunaController@edit');
-Route::post('pengguna/edit/{pengguna}','penggunaController@update');
-Route::get('pengguna/hapus/{pengguna}','penggunaController@hapus');
-
-
 
 Route::get('ruangan/lihat/{ruangan}','ruanganController@lihat');
 Route::post('ruangan/simpan','ruanganController@simpan');
@@ -105,5 +96,44 @@ Route::post('dosen_matakuliah/edit/{dosen_matakuliah}','dosen_matakuliahControll
 Route::get('dosen_matakuliah/hapus/{dosen_matakuliah}','dosen_matakuliahController@hapus');
 
 
+
+
+Route::get('/doslike',function(){
+	return \App\dosen_matakuliah::whereHas('dosen',function($query){
+		$query->where('nama','like','%s%');
+	})
+	->orwhereHas('matakuliah',function($kueri){
+		$kueri->where('title','like','%a%');
+	})
+	->with('dosen')
+	->groupBy('dosen_id')
+	->get();
+});
+
+
+
 Route::get('ujiHas','RelationshipRebornController@ujiHas');
 Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
+
+/*========================================================================================================
+				MODUL 8
+==========================================================================================================*/
+
+Route::get('/modul',function(illuminate\Http\Request $request){
+
+	echo "Ini adalah Titah dari Method Get ". $request->nama;
+});
+
+use illuminate\Http\request;
+Route::get('/mod8',function(){
+
+	echo Form::open(['url'=>'/mod']).
+	Form::label('nama').
+	Form::text('nama',null).
+	Form::submit('Kirim').
+	Form::close();
+});
+Route::post('/mod',function(Request $request){
+
+	echo "Hasil Dari Form Input Tadi Nama : ".$request->nama;
+});

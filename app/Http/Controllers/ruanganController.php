@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\RuanganRequest;
 
 use App\ruangan;
 
@@ -16,7 +16,7 @@ class ruanganController extends Controller
     public function tambah(){
         return view('ruangan.tambah');
     }
-    public function simpan(Request $input){
+    public function simpan(RuanganRequest $input){
         $ruangan = new ruangan();
         $ruangan->title = $input->title;
         $informasi = $ruangan->save() ? 'Berhasil Simpan Data' : 'Gagal Simpan Data';
@@ -30,7 +30,7 @@ class ruanganController extends Controller
         $ruangan = ruangan::find($id);
         return view('ruangan.lihat')->with(array('ruangan'=>$ruangan));
     }
-    public function update($id, Request $input){
+    public function update($id, RuanganRequest $input){
         $ruangan = ruangan::find($id);
         $ruangan->title = $input->title;
         $informasi = $ruangan->save() ? 'Berhasil update Data' : 'Gagal update Data';

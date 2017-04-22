@@ -81,6 +81,9 @@
 								<a href="{{url('matakuliah')}}">Matakuliah</a>
 							</li>
 						</ul>
+					</li>
+					<li>
+						<a href="{{ url('logout')}}">Logout</a>
 					</li>					
 				</ul>
 			</div>
@@ -94,6 +97,17 @@
 				{{Session::get('informasi')}}
 			</div>
 			@endif
+			@if (count($errors) > 0)
+			<div class="alert alert-danger">
+				<ul>
+					@foreach ($errors->all() as $error)
+					<li>{{$error}}</li>
+					@endforeach
+				</ul>
+			</div>
+			@endif
+
+
 			@yield('container')
 	</div>
 	<nav class="navbar navbar-default navbar-fixed-bottom">

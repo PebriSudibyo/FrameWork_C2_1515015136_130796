@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+use App\Http\Requests\DosenMatakuliahRequest;
 
 use App\dosen_matakuliah;
 
@@ -26,7 +26,7 @@ class dosen_matakuliahController extends Controller
         $matakuliah = new matakuliah;
         return view('dosen_matakuliah.tambah',compact('dosen','matakuliah'));
     }
-    public function simpan(Request $input)
+    public function simpan(DosenMatakuliahRequest $input)
     {
     	$dosen_matakuliah = new dosen_matakuliah($input->only('dosen_id','matakuliah_id'));
         if($dosen_matakuliah->save()) $this->informasi = "Jadwal Dosen Mengajar Berhasil Disimpan";
@@ -48,7 +48,7 @@ class dosen_matakuliahController extends Controller
         $dosen_matakuliah = dosen_matakuliah::find($id);
         return view('dosen_matakuliah.lihat', compact('dosen_matakuliah'));
     }
-    public function update($id, Request $input)
+    public function update($id, DosenMatakuliahRequest $input)
     {
         $dosen_matakuliah = dosen_matakuliah::find($id);
         $dosen_matakuliah->dosen_id = $input->dosen_id;
